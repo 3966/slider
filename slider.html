@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .slider {
+      padding: 5px 0;
+      position: relative;
+      margin: 30px 10%;
+      --percent: 0;
+    }
+
+    .slider-track {
+      position: relative;
+      display: block;
+      width: 100%;
+      height: 6px;
+      background-color: lightgray;
+      border: 0;
+      padding: 0;
+      outline: none;
+      border-radius: 4px;
+    }
+
+    .slider-b {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 6px;
+      background-color: skyblue;
+      border-radius: 4px;
+    }
+
+    .slider-thumb {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border: 0;
+      padding: 0;
+      background: #fff;
+      box-shadow: 0 0 0 1px skyblue;
+      border-radius: 50%;
+      top: 0;
+      margin: auto -8px;
+      outline: none;
+    }
+
+    .colm12 {
+      width: 700px;
+    }
+
+    .slidertitle {
+      width: 100%;
+    }
+
+    .sliderbox {
+      width: 33%;
+    }
+
+    .slidercow {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      /* justify-content: space-around; */
+      align-items: baseline;
+
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class=" colm12">
+    <div class='slidertitle'>
+      <h3>dfdsffsdfsdfsdfddfs</h3>
+    </div>
+    <div class="slidercow">
+      <div class=' slideritem1'>sdsadsadfsafsafd</div>
+      <div class='sliderbox '>
+        <div class='sbox'></div>
+      </div>
+      <div class='slideritem2'> sadfsdfsfdsfdsf</div>
+    </div>
+  </div>
+  <div class=" colm12">
+    <div class='slidertitle'>
+      <h3>dfdsffsdfsdfsdfddfs</h3>
+    </div>
+    <div class="slidercow">
+      <div class=' slideritem1'>sdsadsadfsafsafd</div>
+      <div class='sliderbox '>
+        <div class='sbox'></div>
+      </div>
+      <div class='slideritem2'> sadfsdfsfdsfdsf</div>
+    </div>
+  </div>
+  <div class=" colm12">
+    <div class='slidertitle'>
+      <h3>dfdsffsdfsdfsdfddfs</h3>
+    </div>
+    <div class="slidercow">
+      <div class=' slideritem1'>sdsadsadfsafsafd</div>
+      <div class='sliderbox '>
+        <div class='sbox'></div>
+      </div>
+      <div class='slideritem2'> sadfsdfsfdsfdsf</div>
+    </div>
+  </div>
+  <div class=" colm12">
+    <div class='slidertitle'>
+      <h3>dfdsffsdfsdfsdfddfs</h3>
+    </div>
+    <div class="slidercow">
+      <div class=' slideritem1'>sdsadsadfsafsafd</div>
+      <div class='sliderbox '>
+        <div class='sbox'></div>
+      </div>
+      <div class='slideritem2'> sadfsdfsfdsfdsf</div>
+    </div>
+  </div>
+  <div class=" colm12">
+    <div class='slidertitle'>
+      <h3>dfdsffsdfsdfsdfddfs</h3>
+    </div>
+    <div class="slidercow">
+      <div class=' slideritem1'>sdsadsadfsafsafd</div>
+      <div class='sliderbox '>
+        <div class='sbox'></div>
+      </div>
+      <div class='slideritem2'> sadfsdfsfdsfdsf</div>
+    </div>
+  </div>
+</body>
+<script>
+   function _instanceof(left, right) {
+	if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) {
+		return !!right[Symbol.hasInstance](left)
+	} else {
+		return left instanceof right
+	}
+}
+function _classCallCheck(instance, Constructor) {
+	if (!_instanceof(instance, Constructor)) {
+		throw new TypeError("Cannot call a class as a function");
+	}
+}
+function _defineProperties(target, props) {
+	for (var i = 0; i < props.length; i++) {
+		var descriptor = props[i];
+		descriptor.enumerable = descriptor.enumerable || false;
+		descriptor.configurable = true;
+		if ("value" in descriptor) descriptor.writable = true;
+		Object.defineProperty(target, descriptor.key, descriptor)
+	}
+}
+function _createClass(Constructor, protoProps, staticProps) {
+	if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+	if (staticProps) _defineProperties(Constructor, staticProps);
+	return Constructor
+}
+var Slider = function() {
+		function Slider() {
+			var _this = this;
+			var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+			_classCallCheck(this, Slider);
+			this.el = opts.el;
+			this.value = opts.value || 0;
+			this.slider = null;
+			this.render();
+			this.bindEvt();
+			return {
+				val: function val(value) {
+					_this.val(value)
+				}
+			}
+		}
+		_createClass(Slider, [{
+			key: "render",
+			value: function render() {
+				var container = this.el;
+				var slider = document.createElement('div');
+				this.slider = slider;
+				this.slider.setAttribute("slider-data", 0);
+				if (this.value) {
+					this.val(this.value)
+				}
+				slider.className = "slider";
+				slider.innerHTML = "<button class=\"slider-track\" tabindex=\"-1\"><span class=\"slider-b\"></span></button>\n\t  <button class=\"slider-thumb\"></button>";
+				if (container) {
+					container.appendChild(slider)
+				} else {
+					document.body.appendChild(slider)
+				}
+			}
+		}, {
+			key: "bindEvt",
+			value: function bindEvt() {
+				var _this2 = this;
+				var slider = this.slider;
+				var slider_track = slider.querySelector('.slider-track');
+				var slider_thumb = slider.querySelector('.slider-thumb');
+				var readymMove = false;
+				var startHandle = function startHandle(e) {
+						if (e.target === slider_thumb) {
+							e.stopPropagation();
+							readymMove = true
+						}
+					};
+				var moveHandle = function moveHandle(e) {
+						if (readymMove) {
+							_this2.computeVal(e)
+						}
+					};
+				var endHandle = function endHandle() {
+						readymMove = false
+					};
+				slider.addEventListener('click', function(e) {
+					if (e.target == slider_track) {
+						_this2.computeVal(e)
+					}
+				}, false);
+				slider.addEventListener('keydown', function(evt) {
+					if (document.activeElement === slider_thumb) {
+						var _value = _this2.val();
+						evt = evt ? evt : window.event ? window.event : "";
+						var keyCode = evt.keyCode ? evt.keyCode : evt.which;
+						switch (keyCode) {
+						case 37:
+							_value--;
+							break;
+						case 39:
+							_value++;
+							break
+						}
+					}
+					_this2.val(value)
+				}, false);
+				slider.addEventListener('touchstart', startHandle);
+				slider.addEventListener('mousedown', startHandle);
+				window.addEventListener('touchmove', moveHandle);
+				window.addEventListener('mousemove', moveHandle);
+				window.addEventListener('touchend', endHandle);
+				window.addEventListener('mouseup', endHandle)
+			}
+		}, {
+			key: "computeVal",
+			value: function computeVal(e) {
+				var _this$slider$getBound = this.slider.getBoundingClientRect(),
+					width = _this$slider$getBound.width,
+					left = _this$slider$getBound.left;
+				var posX = e.pageX;
+				if (e.touches) {
+					posX = e.touches[0].pageX
+				}
+				this.val((posX - left) / width * 100)
+			}
+		}, {
+			key: "val",
+			value: function val(value) {
+				if (typeof value === 'undefined') {
+					return this.slider.style.getPropertyValue('--percent', 50)
+				}
+				if (isNaN(value)) {
+					return
+				}
+				if (value < 0) {
+					value = 0
+				} else if (value > 100) {
+					value = 100
+				}
+				var slider_b = this.slider.querySelector('.slider-b');
+				var slider_t = this.slider.querySelector('.slider-thumb');
+				slider_b.style.width = value + "%";
+				slider_t.style.left = value + "%";
+				var myValue = 3;
+				myValue = Math.ceil(value / 20);
+				if (myValue == 0) {
+					myValue = -2
+				} else {
+					myValue = myValue - 3
+				}
+				this.slider.setAttribute("slider-data", myValue)
+			}
+		}]);
+		return Slider
+	}();
+</script>
+<script>
+  var box = document.getElementsByClassName('sbox');
+  for (var i = 0; i < box.length; i++) {
+    new Slider({ el: box[i] });  // 指定容器// 缺省赋值
+
+  }
+
+ // 无参数（插入到 body 标签最后，赋值为 0）
+
+
+</script>
+
+</html>
